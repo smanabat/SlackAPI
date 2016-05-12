@@ -264,6 +264,7 @@ namespace SlackAPI
             }
             else
             {
+                if (message.type == "reconnect_url") return; // reconnect_url is experimental and not supported from Slack - https://api.slack.com/events/reconnect_url
                 System.Diagnostics.Debug.WriteLine(string.Format("No valid route for {0} - {1}", message.type, message.subtype ?? "null"));
                 if (ErrorHandlingMessage != null)
                     ErrorHandlingMessage(new InvalidDataException(string.Format("No valid route for {0} - {1}", message.type, message.subtype ?? "null")));
